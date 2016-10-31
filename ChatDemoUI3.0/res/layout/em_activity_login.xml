@@ -10,19 +10,6 @@
         android:layout_height="0dip"
         android:layout_weight="1" >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:src="@drawable/em_welcom_logo" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1" >
-
         <RelativeLayout
             android:id="@+id/rl_username"
             android:layout_width="match_parent"
@@ -46,7 +33,7 @@
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:background="@null"
-                android:hint="@string/user_name"
+                android:hint="用户名"
                 android:paddingLeft="10dip"
                 android:singleLine="true"
                 android:textColor="#000"
@@ -78,7 +65,7 @@
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:background="@null"
-                android:hint="@string/password"
+                android:hint="密码"
                 android:inputType="textPassword"
                 android:paddingLeft="10dip"
                 android:singleLine="true"
@@ -105,7 +92,7 @@
                 android:onClick="register"
                 android:paddingBottom="7dp"
                 android:paddingTop="7dp"
-                android:text="@string/register"
+                android:text="注册"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
@@ -120,9 +107,10 @@
                 android:onClick="login"
                 android:paddingBottom="7dp"
                 android:paddingTop="7dp"
-                android:text="@string/login"
+                android:text="登录"
                 android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:id="@+id/button2" />
         </LinearLayout>
     </RelativeLayout>
 
