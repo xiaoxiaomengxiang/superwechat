@@ -19,8 +19,8 @@ apply plugin: 'com.android.application'
 
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
 
     defaultConfig {
         applicationId "com.hyphenate.chatuidemo"
@@ -70,5 +70,5 @@ dependencies {
 //    compile ('com.anthonycr.grant:permissions:1.0'){
 //        exclude module: 'support-v4'
 //    }
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:appcompat-v7:24.2.1'
 }
