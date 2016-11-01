@@ -7,35 +7,34 @@
     android:background="@color/black_deep"
     tools:context="cn.yp.superwechat.ui.GuideActivity">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/but_register"
+        android:text="@string/register"
+        android:layout_marginBottom="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/imageView2"
+        android:layout_alignEnd="@+id/imageView2" />
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#459f3f"
+        android:text="@string/login"
+        android:id="@+id/but_login"
+        android:layout_above="@+id/but_register"
+        android:layout_alignLeft="@+id/but_register"
+        android:layout_alignStart="@+id/but_register" />
+
     <ImageView
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:src="@drawable/icon_logo"
-        android:layout_alignParentTop="true"
+        android:id="@+id/imageView2"
+        android:layout_above="@+id/but_login"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="112dp"
-        android:id="@+id/imageView2" />
-
-    <Button
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView2"
-        android:layout_centerHorizontal="true"
-        android:background="#7CCD7C"
-        android:text="@string/login"
-        android:layout_marginTop="20dp"
-        android:id="@+id/button" />
-
-    <Button
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:id="@+id/button1"
-        android:text="sign up"
-        android:layout_below="@+id/button"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button" />
+        android:layout_marginBottom="92dp" />
 </RelativeLayout>

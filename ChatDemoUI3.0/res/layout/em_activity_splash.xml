@@ -7,12 +7,12 @@
 
     <ImageView
         android:id="@+id/iv_splash_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:src="@drawable/icon_logo"
+        android:layout_marginTop="151dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="111dp" />
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

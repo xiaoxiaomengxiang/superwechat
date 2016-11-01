@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
-import cn.yp.superwechat.DemoHelper;
-import cn.yp.superwechat.DemoHelper.DataSyncListener;
+import cn.yp.superwechat.SuperWeChatHelper;
+import cn.yp.superwechat.SuperWeChatHelper.DataSyncListener;
 import cn.yp.superwechat.utils.PreferenceManager;
 import com.hyphenate.easeui.domain.EaseUser;
 
@@ -77,7 +77,7 @@ public class UserProfileManager {
 				isSyncingContactInfosWithServer = false;
 				// in case that logout already before server returns,we should
 				// return immediately
-				if (!DemoHelper.getInstance().isLoggedIn()) {
+				if (!SuperWeChatHelper.getInstance().isLoggedIn()) {
 					return;
 				}
 				if (callback != null) {

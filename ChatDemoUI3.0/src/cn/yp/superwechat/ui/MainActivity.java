@@ -52,7 +52,7 @@ import com.umeng.update.UmengUpdateAgent;
 import java.util.List;
 
 import cn.yp.superwechat.Constant;
-import cn.yp.superwechat.DemoHelper;
+import cn.yp.superwechat.SuperWeChatHelper;
 import cn.yp.superwechat.R;
 import cn.yp.superwechat.db.InviteMessgeDao;
 import cn.yp.superwechat.db.UserDao;
@@ -103,7 +103,7 @@ public class MainActivity extends BaseActivity {
 		
 		//make sure activity will not in background if user is logged into another device or removed
 		if (savedInstanceState != null && savedInstanceState.getBoolean(Constant.ACCOUNT_REMOVED, false)) {
-		    DemoHelper.getInstance().logout(false,null);
+		    SuperWeChatHelper.getInstance().logout(false,null);
 			finish();
 			startActivity(new Intent(this, LoginActivity.class));
 			return;
@@ -215,7 +215,7 @@ public class MainActivity extends BaseActivity {
 		public void onMessageReceived(List<EMMessage> messages) {
 			// notify new message
 		    for (EMMessage message : messages) {
-		        DemoHelper.getInstance().getNotifier().onNewMsg(message);
+		        SuperWeChatHelper.getInstance().getNotifier().onNewMsg(message);
 		    }
 			refreshUIWithMessage();
 		}
@@ -422,7 +422,7 @@ public class MainActivity extends BaseActivity {
 
 		// unregister this event listener when this activity enters the
 		// background
-		DemoHelper sdkHelper = DemoHelper.getInstance();
+		SuperWeChatHelper sdkHelper = SuperWeChatHelper.getInstance();
 		sdkHelper.pushActivity(this);
 
 		EMClient.getInstance().chatManager().addMessageListener(messageListener);
@@ -431,7 +431,7 @@ public class MainActivity extends BaseActivity {
 	@Override
 	protected void onStop() {
 		EMClient.getInstance().chatManager().removeMessageListener(messageListener);
-		DemoHelper sdkHelper = DemoHelper.getInstance();
+		SuperWeChatHelper sdkHelper = SuperWeChatHelper.getInstance();
 		sdkHelper.popActivity(this);
 
 		super.onStop();
@@ -467,7 +467,7 @@ public class MainActivity extends BaseActivity {
 	 */
 	private void showConflictDialog() {
 		isConflictDialogShow = true;
-		DemoHelper.getInstance().logout(false,null);
+		SuperWeChatHelper.getInstance().logout(false,null);
 		String st = getResources().getString(R.string.Logoff_notification);
 		if (!MainActivity.this.isFinishing()) {
 			// clear up global variables
@@ -504,7 +504,7 @@ public class MainActivity extends BaseActivity {
 	 */
 	private void showAccountRemovedDialog() {
 		isAccountRemovedDialogShow = true;
-		DemoHelper.getInstance().logout(false,null);
+		SuperWeChatHelper.getInstance().logout(false,null);
 		String st5 = getResources().getString(R.string.Remove_the_notification);
 		if (!MainActivity.this.isFinishing()) {
 			// clear up global variables
@@ -552,7 +552,7 @@ public class MainActivity extends BaseActivity {
             
             @Override
             public void onReceive(Context context, Intent intent) {
-                DemoHelper.getInstance().logout(false,new EMCallBack() {
+                SuperWeChatHelper.getInstance().logout(false,new EMCallBack() {
                     
                     @Override
                     public void onSuccess() {
