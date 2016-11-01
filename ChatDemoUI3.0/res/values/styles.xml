@@ -74,6 +74,7 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:drawablePadding">10dp</item>
     </style>
+
     <style name="list_txt_Style_without_nopadding">
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">45dp</item>
@@ -84,6 +85,7 @@
         <item name="android:focusable">false</item>
         <item name="android:gravity">center_vertical</item>
     </style>
+
     <style name="list_txt_Style_without_nopadding_right">
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">45dp</item>
@@ -108,6 +110,7 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="MMListItem">
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
@@ -116,6 +119,7 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="MMFontTitleInList">
         <item name="android:textSize">16.0dip</item>
         <item name="android:textColor">#ff595c61</item>
@@ -125,13 +129,19 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:singleLine">true</item>
     </style>
+
     <style name="AnimHead" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/head_in</item>
         <item name="android:windowExitAnimation">@anim/head_out</item>
     </style>
+
     <style name="txt_ContextStyle1">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

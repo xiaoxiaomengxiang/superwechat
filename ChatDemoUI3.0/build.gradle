@@ -4,7 +4,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.android.tools.build:gradle:2.2.2'
     }
 }
 
@@ -24,7 +24,7 @@ android {
 
     defaultConfig {
         applicationId "com.hyphenate.chatuidemo"
-        minSdkVersion 11
+        minSdkVersion 15
         targetSdkVersion 22
         multiDexEnabled true
     }
@@ -71,4 +71,5 @@ dependencies {
 //        exclude module: 'support-v4'
 //    }
     compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
 }
