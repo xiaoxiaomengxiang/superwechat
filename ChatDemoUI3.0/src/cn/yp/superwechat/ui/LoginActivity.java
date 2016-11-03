@@ -254,7 +254,11 @@ public class LoginActivity extends BaseActivity {
 	}
 	@Override
 	    protected void onDestroy() {
-		        super.onDestroy();
-		        pd.dismiss();
+		super.onDestroy();
+		//修改登录过程连续返回导致的dialog空指针问题
+		if(pd!=null) {
+			            pd.dismiss();
+			        }
+		pd.dismiss();
 		    }
 }
