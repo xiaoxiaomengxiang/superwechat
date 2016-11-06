@@ -16,16 +16,22 @@ package cn.yp.superwechat.ui;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+
 import com.hyphenate.easeui.ui.EaseBaseActivity;
 import com.umeng.analytics.MobclickAgent;
 
+import cn.yp.superwechat.utils.ExitAppUtils;
+
 @SuppressLint("Registered")
-public class BaseActivity extends EaseBaseActivity {
+public abstract class BaseActivity extends EaseBaseActivity {
 
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
+        ExitAppUtils.getInstance().addActivity(this);
     }
+
+    public abstract void onCheckedChange(int checkedPosition, boolean byUser);
 
     @Override
     protected void onResume() {
