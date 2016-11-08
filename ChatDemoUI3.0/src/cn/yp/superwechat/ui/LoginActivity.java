@@ -94,7 +94,6 @@ public class LoginActivity extends BaseActivity {
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				mEtPassword.setText(null);
 			}
-
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 			}
