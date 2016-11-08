@@ -1,14 +1,12 @@
 package cn.yp.superwechat.ui;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -71,7 +69,7 @@ public class UserProfileActivity extends BaseActivity implements View.OnClickLis
 		ButterKnife.bind(this);
 		initView();
 		initListener();
-		user = (I.User) EaseUserUtils.getCurrentAppUserInfo();
+		user = (User) EaseUserUtils.getCurrentAppUserInfo();
 	}
 
 	@Override
@@ -117,31 +115,31 @@ public class UserProfileActivity extends BaseActivity implements View.OnClickLis
 	}
 
 
-	private void uploadHeadPhoto() {
+//	private void uploadHeadPhoto() {
 //		Builder builder = new Builder(this);
 //		builder.setTitle(R.string.dl_title_upload_photo);
 //		builder.setItems(new String[]{getString(R.string.dl_msg_take_photo), getString(R.string.dl_msg_local_upload)},
-				new DialogInterface.OnClickListener() {
+//				new DialogInterface.OnClickListener() {
 
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-						switch (which) {
-							case 0:
-								Toast.makeText(UserProfileActivity.this, getString(R.string.toast_no_support),
-										Toast.LENGTH_SHORT).show();
-								break;
-							case 1:
-								Intent pickIntent = new Intent(Intent.ACTION_PICK, null);
-								pickIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-								startActivityForResult(pickIntent, REQUESTCODE_PICK);
-								break;
-							default:
-								break;
-						}
-					}
-				};
+//					public void onClick(DialogInterface dialog, int which) {
+//						dialog.dismiss();
+//						switch (which) {
+//							case 0:
+//								Toast.makeText(UserProfileActivity.this, getString(R.string.toast_no_support),
+//										Toast.LENGTH_SHORT).show();
+//								break;
+//							case 1:
+//								Intent pickIntent = new Intent(Intent.ACTION_PICK, null);
+//								pickIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+//								startActivityForResult(pickIntent, REQUESTCODE_PICK);
+//								break;
+//							default:
+//								break;
+//						}
+//					}
+//				});
 //		builder.create().show();
-	}
+//	}
 
 
 	private void updateRemoteNick(final String nickName) {
@@ -183,10 +181,10 @@ public class UserProfileActivity extends BaseActivity implements View.OnClickLis
 			@Override
 			public void onSuccess(String s) {
 				if(s!=null){
-					Result result = ResultUtils.getResultFromJson(s, I.User.class);
+					Result result = ResultUtils.getResultFromJson(s, User.class);
 					L.e(TAG,"result="+result);
 					if(result!=null && result.isRetMsg()){
-						I.User u = (I.User) result.getRetData();
+						User u = (User) result.getRetData();
 						updateLocatUser(u);
 					}else{
 						Toast.makeText(UserProfileActivity.this, getString(R.string.toast_updatenick_fail), Toast.LENGTH_SHORT)
@@ -212,7 +210,7 @@ public class UserProfileActivity extends BaseActivity implements View.OnClickLis
 
 	private void updateLocatUser(User u) {
 		user = u;
-		SuperWeChatHelper.getInstance().saveAppContact((com.hyphenate.easeui.domain.User) u);
+//		SuperWeChatHelper.getInstance().saveAppContact(u);
 		EaseUserUtils.setCurentAppUserNick(mTvUserinfoNick);
 	}
 
@@ -249,6 +247,8 @@ public class UserProfileActivity extends BaseActivity implements View.OnClickLis
 					Result result = ResultUtils.getResultFromJson(s, User.class);
 					L.e(TAG,"result="+result);
 					if(result!=null && result.isRetMsg()){
+						User u = (User) result.getRetData();
+//						SuperWeChatHelper.getInstance().saveAppContact(u);
 						setPicToView(picData);
 					}else{
 						dialog.dismiss();
@@ -294,7 +294,10 @@ public class UserProfileActivity extends BaseActivity implements View.OnClickLis
 			Bitmap photo = extras.getParcelable("data");
 			Drawable drawable = new BitmapDrawable(getResources(), photo);
 			mIvUserinfoAvatar.setImageDrawable(drawable);
-			uploadUserAvatar(Bitmap2Bytes(photo));
+			dialog.dismiss();
+			Toast.makeText(UserProfileActivity.this, getString(R.string.toast_updatephoto_success),
+					Toast.LENGTH_SHORT).show();
+//            uploadUserAvatar(Bitmap2Bytes(photo));
 		}
 
 	}
@@ -339,7 +342,7 @@ public class UserProfileActivity extends BaseActivity implements View.OnClickLis
 				MFGT.finish(this);
 				break;
 			case R.id.layout_userinfo_avatar:
-				uploadHeadPhoto();
+//				uploadHeadPhoto();
 				break;
 			case R.id.layout_userinfo_nick:
 				final EditText editText = new EditText(this);
