@@ -73,7 +73,6 @@ public class LoginActivity extends BaseActivity {
 		mContext = this;
 
 	}
-
 	@Override
 	public void onCheckedChange(int checkedPosition, boolean byUser) {
 	}
