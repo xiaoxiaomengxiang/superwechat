@@ -1,9 +1,7 @@
-
 package cn.yp.superwechat.ui;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -18,6 +16,7 @@ import android.widget.Toast;
 
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 
 import butterknife.BindView;
@@ -26,17 +25,15 @@ import butterknife.OnClick;
 import cn.yp.superwechat.R;
 import cn.yp.superwechat.SuperWeChatApplication;
 import cn.yp.superwechat.SuperWeChatHelper;
+import cn.yp.superwechat.bean.Result;
 import cn.yp.superwechat.data.NetDao;
 import cn.yp.superwechat.data.OkHttpUtils;
 import cn.yp.superwechat.db.SuperWeChatDBManager;
 import cn.yp.superwechat.utils.L;
 import cn.yp.superwechat.utils.MD5;
 import cn.yp.superwechat.utils.MFGT;
+import cn.yp.superwechat.utils.ResultUtils;
 
-/**
- * Login screen
- * 
- */
 public class LoginActivity extends BaseActivity {
 	private static final String TAG = "LoginActivity";
 	public static final int REQUEST_CODE_SETNICK = 1;
@@ -74,6 +71,11 @@ public class LoginActivity extends BaseActivity {
 		setListener();
 		initView();
 		mContext = this;
+
+	}
+
+	@Override
+	public void onCheckedChange(int checkedPosition, boolean byUser) {
 
 	}
 
@@ -127,11 +129,9 @@ public class LoginActivity extends BaseActivity {
 		}
 
 		progressShow = true;
-		pd = new ProgressDialog(LoginActivity.this);
 		pd = new ProgressDialog(mContext);
-//		pd = new ProgressDialog(LoginActivity.this);
 		pd.setCanceledOnTouchOutside(false);
-		pd.setOnCancelListener(new OnCancelListener() {
+		pd.setOnCancelListener(new DialogInterface.OnCancelListener() {
 
 			@Override
 			public void onCancel(DialogInterface dialog) {
@@ -192,8 +192,21 @@ public class LoginActivity extends BaseActivity {
 			@Override
 			public void onSuccess(String s) {
 				L.e(TAG,"s="+s);
-
-				loginSuccess();
+				if(s!=null && s!=""){
+					Result result = ResultUtils.getResultFromJson(s, User.class);
+					if(result!=null && result.isRetMsg()){
+						User user = (User) result.getRetData();
+						if(user!=null) {
+							SuperWeChatHelper.getInstance().saveAppContact(user);
+							loginSuccess();
+						}
+					}else{
+						pd.dismiss();
+						L.e(TAG,"login fail,"+result);
+					}
+				}else{
+					pd.dismiss();
+				}
 			}
 
 			@Override
@@ -237,31 +250,31 @@ public class LoginActivity extends BaseActivity {
 			return;
 		}
 		if (SuperWeChatHelper.getInstance().getCurrentUsernName() != null) {
-			            mEtUsername.setText(SuperWeChatHelper.getInstance().getCurrentUsernName());
-			        }
+			mEtUsername.setText(SuperWeChatHelper.getInstance().getCurrentUsernName());
+		}
 	}
 
-	@OnClick({R.id.lr_title, R.id.button2, R.id.btn_register})
+	@OnClick({R.id.img_back, R.id.btn_register})
 	public void onClick(View view) {
 		switch (view.getId()) {
-			case R.id.lr_title:
+			case R.id.img_back:
 				MFGT.finish(this);
 				break;
-			case R.id.button2:
-				login();
-				break;
+//			case R.id.btn_login:
+//				login();
+//				break;
 			case R.id.btn_register:
 				MFGT.gotoRegister(this);
 				break;
 		}
 	}
+
 	@Override
-	    protected void onDestroy() {
+	protected void onDestroy() {
 		super.onDestroy();
-		//修改登录过程连续返回导致的dialog空指针问题
 		if(pd!=null) {
-			            pd.dismiss();
-			        }
-		pd.dismiss();
-		    }
+			pd.dismiss();
+		}
+	}
+
 }
