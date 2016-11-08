@@ -53,7 +53,6 @@ public class LoginActivity extends BaseActivity {
 	String currentPassword;
 	ProgressDialog pd;
 	LoginActivity mContext;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
