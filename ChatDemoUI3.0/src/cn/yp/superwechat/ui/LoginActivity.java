@@ -71,7 +71,6 @@ public class LoginActivity extends BaseActivity {
 		setListener();
 		initView();
 		mContext = this;
-
 	}
 	@Override
 	public void onCheckedChange(int checkedPosition, boolean byUser) {
