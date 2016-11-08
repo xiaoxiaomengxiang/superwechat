@@ -76,7 +76,6 @@ public class LoginActivity extends BaseActivity {
 
 	@Override
 	public void onCheckedChange(int checkedPosition, boolean byUser) {
-
 	}
 
 	private void initView() {
