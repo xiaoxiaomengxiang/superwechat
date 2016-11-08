@@ -77,7 +77,6 @@ public class LoginActivity extends BaseActivity {
 	@Override
 	public void onCheckedChange(int checkedPosition, boolean byUser) {
 	}
-
 	private void initView() {
 		if (SuperWeChatHelper.getInstance().getCurrentUsernName() != null) {
 			mEtUsername.setText(SuperWeChatHelper.getInstance().getCurrentUsernName());
