@@ -86,7 +86,6 @@ public class LoginActivity extends BaseActivity {
 		mTxtTitle.setVisibility(View.VISIBLE);
 		mTxtTitle.setText(R.string.login);
 	}
-
 	private void setListener() {
 		// if user changed, clear the password
 		mEtUsername.addTextChangedListener(new TextWatcher() {
